@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Market App</title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/login.css">
+<link rel="stylesheet" type="text/css" href="assets/css/register.css">
+
+	<body ng-app="marketApp">
+		<div class="container">
+			<ui-view></ui-view>
+		</div>
+	</body>	
+
+	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="node_modules/angular-cookies/angular-cookies.js"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+
+	<!-- custome-js -->
+	<script type="text/javascript" src="env.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="routes.js"></script>
+	
+	<script type="text/javascript" src="controller/home_controller.js"></script>
+	<script type="text/javascript" src="controller/session_controller.js"></script>
+	<script type="text/javascript" src="controller/user_controller.js"></script>
+	
+	<script type="text/javascript" src="services/authentication_service.js"></script>
+	<script type="text/javascript" src="services/user_service.js"></script>
+
+</html>
