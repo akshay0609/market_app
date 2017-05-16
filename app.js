@@ -1,1 +1,1 @@
-var app = angular.module('marketApp', ['ui.router','ngCookies']);
+var app = angular.module('marketApp', ['ui.router','ngCookies','ui.router.state.events']);

@@ -7,19 +7,25 @@
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/login.css">
 <link rel="stylesheet" type="text/css" href="assets/css/register.css">
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 	<body ng-app="marketApp">
-		<div class="container">
+		<ng-include src="'views/nav.html'"></ng-include>
+		<div class="">
 			<ui-view></ui-view>
 		</div>
+		<ng-include src="'views/footer.html'"></ng-include>
 	</body>	
 
+	
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/angular.ui-router/1.0.1/stateEvents.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+	
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="node_modules/angular-cookies/angular-cookies.js"></script>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
 
 	<!-- custome-js -->
 	<script type="text/javascript" src="env.js"></script>
