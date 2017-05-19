@@ -12,21 +12,23 @@ app.factory("AuthenticationService",
 			var onError = function(response, status, headers, config) {
 				callback(response);
 			}
-
+			
 			$http.post(__env.apiUrl + '/api/sessions',{session: user})
 				.then(onSuccess)
 				.catch(onError);
 			}
 
-		service.SetCredentials = function(user_email,auth_token) {
+		service.SetCredentials = function(user) {
         $rootScope.globals = {
-        	currentUser: {
-        		user_email: user_email,
-        		auth_token: auth_token
-        	}
+      		currentUser: {
+      			user_id: user.id,
+	      		user_email: user.email,
+	      		user_name: user.name,
+	      		auth_token: user.auth_token
+	      	}
         }
 
-        $http.defaults.headers.common['Authentication'] = auth_token
+        $http.defaults.headers.common['Authentication'] = user.auth_token
         $cookieStore.put('globals', $rootScope.globals)
 		}	
 

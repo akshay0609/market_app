@@ -10,12 +10,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/home',
 			templateUrl: '/views/home',
 			controller: 'home-controller',
-			public: true
+			public: false
 		})
 		.state('register', {
 			url: '/register',
 			templateUrl: '/views/register',
 			controller: 'user-controller',
+			public: true
+		})
+		.state('create_product', {
+			url: '/product',
+			templateUrl: '/views/product_form',
+			controller: 'products-controller',
 			public: true
 		});
 
@@ -26,7 +32,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 			$rootScope.globals = $cookieStore.get('globals') || {};
 			if($rootScope.globals.currentUser) {
-				$http.defaults.headers.common['Authentication'] = $rootScope.auth_token
+				$http.defaults.headers.common['Authentication'] = $rootScope.globals.currentUser.auth_token
 			}
 
 			$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

@@ -10,7 +10,7 @@
       </a>	
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-	     <div class="col-sm-8 col-md-8">
+	     <div class="col-sm-7 col-md-7">
 	      <form class="navbar-form" role="search">
 	      <div class="input-group" style="width: 88%">
           <input type="text" class="form-control " placeholder="Search" name="q">
@@ -22,8 +22,12 @@
 	    </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Today Offers </a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+        <li ng-hide="globals.currentUser"><a href="/#!/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li ng-hide="globals.currentUser"><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+        <li ng-show="globals.currentUser"><a href="#!/product"><span class="glyphicon glyphicon-log-in"></span> Create Product</a></li>
+        <li ng-show="globals.currentUser"><a href="/"><span class="glyphicon glyphicon-user"></span> Hi {{globals.currentUser.user_name}}</a></li>
       </ul>
     </div>
   </div>

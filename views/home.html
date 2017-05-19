@@ -2,14 +2,27 @@
 <a ng-click="sign_out()" class="btn btn-primary btn-md">Sign Out</a>
  -->
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
+
+ <div id="myCarousel">
+  <div>
+    <carousel interval="myInterval">
+      <slide ng-repeat="image1 in images" active="image1.active">
+        <img width="340px" height="300px" ng-src="{{image1.image}}">
+        <div class="carousel-caption">
+          <h4>Slide {{$index+1}}</h4>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+</div>
+
+
+<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
   </ol>
 
-  <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <img src="https://placehold.it/1300x400?text=IMAGE" alt="Image">
@@ -28,7 +41,6 @@
     </div>
   </div>
 
-  <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -37,7 +49,7 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> -->
 
 <div class="container text-center">    
   <h3>New Products</h3><br>

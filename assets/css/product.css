@@ -1,0 +1,5 @@
+.product-preview {
+	word-wrap: break-word;
+	/*word-wrap: break-all;*/
+	padding-right: 8px
+}

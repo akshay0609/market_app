@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.4",
+    "angular-base64-upload": "^0.1.22",
     "angular-cookies": "^1.6.4",
     "bootstrap": "^3.3.7"
   }
