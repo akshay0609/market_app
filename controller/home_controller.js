@@ -20,8 +20,4 @@ $scope.images = [
 
 	$scope.home = $rootScope.login
 
-	$scope.sign_out = function() {
-		AuthenticationService.clearCredentials()
-		$state.go('login')
-	}
 }]);

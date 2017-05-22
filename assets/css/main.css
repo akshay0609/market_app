@@ -22,23 +22,24 @@
   border-radius: 4px;
 }
 
-a:link, a:visited {
+.nav>li>a:link, .nav>li>a:visited {
     color: #ccc;
-    padding: 14px 25px;
+    padding: 14px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
 }
 
-a {
+.nav>li>a, .navbar-brand>a {
   color: #ccc;
-  padding: 14px 25px;
+  padding: 14px 10px;
   text-align: center;
   text-decoration: none;
 }
 
-a:hover, a:active {
-    text-decoration: none;
+.nav>li>a:hover, .nav>li>a:active {
+  text-decoration: none;
+  background-color: #232f3e;
 }
 
 .menu {
@@ -46,9 +47,13 @@ a:hover, a:active {
   background-color: #232f3e;
 }
 
+.navbar-nav .open .dropdown-menu>li>a {
+  color: black;
+}
+
 .navbar {
-    margin-bottom: 0;
-    border-radius: 0;
+  margin-bottom: 0;
+  border-radius: 0;
 }
 
 .carousel-inner>.item>img {
@@ -76,6 +81,10 @@ footer {
 
 .p10 {
   padding: 10px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #232f3e !important;
 }
 
 

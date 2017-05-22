@@ -1,13 +1,28 @@
-app.controller('products-controller',['$scope', '$http', '$q',function($scope, $http, $q) {
+app.controller('products-controller',['$scope', '$http', '$q', 
+																			'$rootScope', 'notificationService', 'ProductService',
+																			function($scope, $http, $q, $rootScope,notificationService, ProductService) {
 
-	$scope.submitProduct = function(product) {
+	$scope.product = {}
 
-		$http.post(__env.apiUrl + '/api/users/' + $rootScope.globals.id +'/products', 
-							{product: product, images: $scope.images})
+	$scope.submitProduct = function() {
 
-		.then(function(data) {
-		})
-		.error(function(data){
-		})
+		if (Object.keys($scope.product).length) { 		
+			ProductService.create($scope.product, $scope.images, function(data, status) {
+				if(status.success) {
+					$scope.product = {}
+					$scope.images = []
+					notificationService.success('Product Stored Successfully');
+				} else {
+					$scope.product = {}
+					$scope.images = []
+					notificationService.error('Internal Problem please try again');
+				}
+			})	
+		}	
+	}
+
+	$scope.reset = function() {
+		$scope.product = {}
+		$scope.images = []
 	}
 }]);

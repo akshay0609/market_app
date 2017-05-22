@@ -3,13 +3,20 @@
 <head>
 	<title>Market App</title>
 </head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/login.css">
-<link rel="stylesheet" type="text/css" href="assets/css/register.css">
-<link rel="stylesheet" type="text/css" href="assets/css/main.css">
-<link rel="stylesheet" type="text/css" href="assets/css/product.css">
-<link rel="stylesheet" type="text/css" href="assets/css/card.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="node_modules/pnotify/dist/pnotify.css">
+	<link rel="stylesheet" href="node_modules/pnotify/dist/pnotify.buttons.css">
+	<link rel="stylesheet" href="node_modules/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/register.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/product.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/card.css">
 
 	<body ng-app="marketApp">
 		<ng-include src="'views/nav.html'"></ng-include>
@@ -21,17 +28,20 @@
 
 	
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>	
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/angular.ui-router/1.0.1/stateEvents.js"></script>
-
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 	
-	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="node_modules/angular-base64-upload/dist/angular-base64-upload.js"></script>
-
 	<script src="node_modules/angular-cookies/angular-cookies.js"></script>
+	<script src="node_modules/pnotify/dist/pnotify.js"></script>
+	<script src="node_modules/pnotify/dist/pnotify.confirm.js"></script>
+	<script src="node_modules/pnotify/dist/pnotify.buttons.js"></script>
+	<script src="node_modules/angular-pnotify/src/angular-pnotify.js"></script>
+	<script src="node_modules/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
 
 	<!-- custome-js -->
 	<script type="text/javascript" src="env.js"></script>
@@ -41,9 +51,11 @@
 	<script type="text/javascript" src="controller/session_controller.js"></script>
 	<script type="text/javascript" src="controller/user_controller.js"></script>
 	<script type="text/javascript" src="controller/products_controller.js"></script>
+	<script type="text/javascript" src="controller/nav_controller.js"></script>
 	
 	<script type="text/javascript" src="routes.js"></script>
 	<script type="text/javascript" src="services/authentication_service.js"></script>
 	<script type="text/javascript" src="services/user_service.js"></script>
+	<script type="text/javascript" src="services/product_service.js"></script>
 
 </html>

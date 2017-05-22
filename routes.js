@@ -10,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/home',
 			templateUrl: '/views/home',
 			controller: 'home-controller',
-			public: false
+			public: true
 		})
 		.state('register', {
 			url: '/register',
@@ -22,7 +22,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/product',
 			templateUrl: '/views/product_form',
 			controller: 'products-controller',
-			public: true
+			public: false
 		});
 
 		$urlRouterProvider.otherwise("home")

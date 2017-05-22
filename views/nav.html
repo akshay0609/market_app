@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-faded menu">
+<nav class="navbar navbar-light bg-faded menu" ng-controller="nav-controller">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">MarketApp
+      <a class="navbar-brand" style="color: #ccc;" href="#">MarketApp
       </a>	
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -27,7 +27,17 @@
         <li ng-hide="globals.currentUser"><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
         <li ng-show="globals.currentUser"><a href="#!/product"><span class="glyphicon glyphicon-log-in"></span> Create Product</a></li>
-        <li ng-show="globals.currentUser"><a href="/"><span class="glyphicon glyphicon-user"></span> Hi {{globals.currentUser.user_name}}</a></li>
+
+        <li ng-show="globals.currentUser" class="dropdown">
+          <a href="#" class="bg dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> 
+          Hi {{globals.currentUser.user_name}}
+          <b class="caret"></b></a>
+          <ul class="bg dropdown-menu">
+            <li><a ng-click="sign_out()">Sign Out</a></li>
+            <li><a href="#">Edit Profile</a></li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>
