@@ -23,6 +23,42 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: '/views/product_form',
 			controller: 'products-controller',
 			public: false
+		})
+		.state('show_product', {
+			url: '/product_show/:id',
+			templateUrl: '/views/product_show',
+			controller: 'products-controller',
+			public: true
+		})
+		.state('index_product', {
+			url: '/products',
+			templateUrl: '/views/products_index',
+			controller: 'products-controller',
+			public: true
+		})
+		.state('product_order', {
+			url: '/carts',
+			templateUrl: '/views/cart.html',
+			controller: 'orders-controller',
+			public: true
+		})
+		.state('show_orders', {
+			url: '/order/:id',
+			templateUrl: '/views/order_show.html',
+			controller: 'orders-controller',
+			public: true
+		})
+		.state('index_order', {
+			url: '/orders',
+			templateUrl: '/views/order.html',
+			controller: 'orders-controller',
+			public: true
+		})
+		.state('payment', {
+			url: '/payment',
+			templateUrl: '/views/payment.html',
+			controller: 'orders-controller',
+			public: false
 		});
 
 		$urlRouterProvider.otherwise("home")
@@ -40,13 +76,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
         if (!toState.public && !$rootScope.globals.currentUser) {
           // $location.path('/login');
           event.preventDefault();
+					$rootScope.beforeLoginUrl = toState.name
 					$state.go('login');
         }
 
  	      if ((toState.url == '/login' || toState.url == '/register') && $rootScope.globals.currentUser) {
 		      // $location.path(' home');
+		       $rootScope.beforeLoginUrl = $rootScope.beforeLoginUrl || ''
 		       event.preventDefault();
-					 $state.go('home');
+					 $state.go($rootScope.beforeLoginUrl);
 	      }
 			});
 		}])

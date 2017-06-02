@@ -21,7 +21,7 @@
 	      </form>
 	    </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Today Offers </a></li>
+        <li><a ui-sref="index_product"><span class="glyphicon glyphicon-shopping-cart"></span> Today Offers </a></li>
 
         <li ng-hide="globals.currentUser"><a href="/#!/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li ng-hide="globals.currentUser"><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -33,11 +33,12 @@
           Hi {{globals.currentUser.user_name}}
           <b class="caret"></b></a>
           <ul class="bg dropdown-menu">
-            <li><a ng-click="sign_out()">Sign Out</a></li>
+            <li><a ui-sref="index_order">Your orders</a></li>
             <li><a href="#">Edit Profile</a></li>
+            <li><a ng-click="sign_out()">Sign Out</a></li>
           </ul>
         </li>
-
+        <li><a ui-sref="product_order" style="color: rgba(224, 224, 83, 0.83)">{{cart_product.length}} <span style="font-size: 18px;" class="glyphicon glyphicon-shopping-cart yellow"></span> Cart </a></li>
       </ul>
     </div>
   </div>

@@ -1,0 +1,15 @@
+ <div class="" data-ng-init="init_products()">
+  <div class="row">
+    <div ng-repeat="product in products" class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+      <a ui-sref="show_product({id:product.id})">
+        <div class="thumbnail text-center">
+          <img style="height: 250px;" class="img-responsive" ng-src="{{product.adds_image}}" >
+          <div class="">
+            <h4>{{product.title}}</h4>
+            <h5 style="color: green">{{product.price}}</h5>
+          </div>
+        </div> 
+      </a>
+    </div>
+ </div>
+</div>            

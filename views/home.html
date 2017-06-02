@@ -2,7 +2,9 @@
   <div>
     <carousel interval="myInterval">
       <slide ng-repeat="image1 in images" active="image1.active">
-        <img width="340px" height="300px" ng-src="{{image1.image}}">
+        <!-- <a ui-sref="show_product"> -->
+          <img class="home-image" ng-src="{{image1.image}}">
+        <!-- </a> -->
         <div class="carousel-caption">
           <h4>Slide {{$index+1}}</h4>
         </div>
@@ -15,12 +17,16 @@
   <h3>New Products</h3><br>
   <div class="row">
     <div class="col-sm-4">
-      <img src="https://placehold.it/130x130?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Product 1</p>
+      <a ui-sref="show_product({id:109})">
+        <img src="http://cdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-4a-0.jpg" class="img-responsive" style="width:100%" alt="Image">
+        <br><p>Xiaomi mi Redmi 4A </p>
+      </a>
     </div>
     <div class="col-sm-4"> 
-      <img src="https://placehold.it/130x130?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Product 2</p>    
+      <a ui-sref="show_product({id:113})">
+        <img src="http://ecx.images-amazon.com/images/I/81DsBcY7DeL._SL1500_.jpg" class="img-responsive" style="width:100%; height: 435px" alt="Image">
+        <br><p>WD External Hard drive (Black)</p> 
+      </a>   
     </div>
     <div class="col-sm-4">
       <div class="well">

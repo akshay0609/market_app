@@ -1,0 +1,46 @@
+<div class="container" ng-init="index_orders()">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th>Sr.no</th>
+                      <th class="text-center">Date</th>
+                      <th >Product</th>
+                      <th class="text-center">Quantity</th>
+                      <th class="text-center">Price</th>
+                      <th class="text-center">Total</th>
+                      <th class="text-center">Review</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat-start="order in orders">
+                    <td rowspan="3">{{$index + 1}}</td>
+                    <tr ng-repeat="product in order.products">
+                      <td class="text-center">{{order.placements[$index].created_at | date:"MM/dd/yyyy"}}</td>
+                      <td class="col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" ng-src="{{product.adds_image}}" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a ui-sref="show_order({id:order.id})">{{product.title}}</a></h4>
+                                <span>Status: </span><span class="text-warning"><strong>Delivered</strong></span>
+                            </div>
+                        </div>
+                      </td>
+                      <td class="col-md-1 text-center"><strong>{{order.placements[$index].quantity}}</strong></td>
+                      <td class="col-md-1 text-center"><strong>{{product.price}}</strong></td>
+                      <td class="col-md-1 text-center"><strong>{{product.price * order.placements[$index].quantity}}</strong></td>
+                        
+                      <td class="col-md-1">
+                        <button ng-click="removeProduct(order)" type="button" class="btn btn-success">
+                          <span ></span> Review
+                        </button>
+                      </td>
+                    </tr>
+                  </tr>
+                  <tr ng-repeat-end></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

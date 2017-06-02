@@ -14,6 +14,7 @@
     "angular-bootstrap-toggle": "^0.1.2",
     "angular-cookies": "^1.6.4",
     "angular-pnotify": "^0.1.2",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0"
   }
 }

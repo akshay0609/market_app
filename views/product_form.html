@@ -2,35 +2,48 @@
 	<h4 class="text-center"></h4>
 	<div class="row mt1">
 		<div class="col-md-5">
-			<form>
+			<form name="productForm">
 			 	<fieldset style="margin: 2%">
 			 	<legend>Create Product</legend>
 				<div class="" style="padding: 4px">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" id='title'> Title</label>
 						<div class="col-sm-10">
-							<input name='title' ng-model='product.title' class="form-control" for='title'>
+							<input name='title' ng-model='product.title' class="form-control" for='title' required>
+							<span style="color: red" ng-show="(productForm.title.$touched) && productForm.title.$invalid">
+								<p ng-show="productForm.title.$error.required">The Title is required</p>
+							</span>
 						</div>	
 					</div>
 
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" id='description'> Description</label>
 						<div class="col-sm-10">
-							<textarea name='description' rows="5" ng-model='product.description' class="form-control" for='description'></textarea>
+							<!-- <my-text-area ></my-text-area> -->
+							<textarea name='description' rows="5" ng-model='product.description' class="form-control" for='description' required></textarea>
+							<span style="color: red" ng-show="(productForm.description.$touched) && productForm.description.$invalid">
+								<p ng-show="productForm.description.$error.required">The Description is required</p>
+							</span>
 						</div>	
 					</div>
 
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" id='price'> Price</label>
 						<div class="col-sm-10">
-							<input name='price' ng-model='product.price' class="form-control" for='price'>
+							<input name='price' ng-model='product.price' class="form-control" for='price' required>
+							<span style="color: red" ng-show="(productForm.price.$touched) && productForm.price.$invalid">
+								<p ng-show="productForm.price.$error.required">The Price is required</p>
+							</span>
 						</div>	
 					</div>
 
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" id='quantity'> Quantity</label>
 						<div class="col-sm-10">
-							<input name='quantity' ng-model='product.quantity' class="form-control" for='quantity'>
+							<input name='quantity' ng-model='product.quantity' class="form-control" for='quantity' required>
+							<span style="color: red" ng-show="(productForm.quantity.$touched) && productForm.quantity.$invalid">
+								<p ng-show="productForm.quantity.$error.required">The Quantity is required</p>
+							</span>
 						</div>
 					</div>
 
@@ -38,8 +51,11 @@
 						<label class="col-sm-2 col-form-label" id='images'> Images</label>
 						<div class="col-sm-10">
 							<label class="custom-file">
-							<input  type="file" class="custom-file-input" ng-model="images" multiple base-sixty-four-input>
+							<input  type="file" class="custom-file-input" ng-model="images" multiple base-sixty-four-input required>
 							<span class="custom-file-control"></span>
+							<span style="color: red" ng-show="(productForm.images.$touched) && productForm.images.$invalid">
+								<p ng-show="productForm.images.$error.required">The Images is required</p>
+							</span>
 							</label>
 						</div>
 					</div>
@@ -47,13 +63,13 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" id='product'> Published</label>
 						<div class="col-sm-10">
-							<toggle ng-model="product.publish" ng-change="changed()" onstyle="btn-info" on="Yes" off="No" size="btn-sm"></toggle>
+							<toggle ng-model="product.published" ng-change="changed()" onstyle="btn-info" on="Yes" off="No" size="btn-sm"></toggle>
 						</div>
 					</div>
 
 					<div class="text-center">
 						<!-- <button type="button" class="form-btn">Preview Products</button> -->
-						<button type="button" ng-click='submitProduct()' class="form-btn">Submit Products</button>
+						<button type="button" ng-disabled="productForm.$invalid" ng-click='submitProduct()' class="form-btn">Submit Products</button>
 						<button type="button" ng-click="reset()" class="form-btn">Reset</button>
 					</div>	
 				</div>	
@@ -71,10 +87,10 @@
 				 			<img ng-hide='images' src="https://placehold.it/300x300?text=IMAGE" alt="Image">
 
 						  <div ng-show='images' id="slides_control">
-						    <div>
+						    <div class="product-carousel">
 						      <carousel interval="myInterval">
 						        <slide ng-repeat="image in images" active="image.active">
-						          <img width="340px" height="300px" ng-src="data:image/jpeg;base64,{{image.base64}}">
+						          <img class="product-image" width="340px" height="300px" ng-src="data:image/jpeg;base64,{{image.base64}}">
 						          <div class="carousel-caption">
 						            <h4>Slide {{$index+1}}</h4>
 						          </div>
@@ -90,7 +106,7 @@
 				 		</p>
 				 		<hr>
 				 		<p class="product-preview">
-				 			<b>Description</b> 	:- {{product.description}}
+				 			<b>Description</b> 	:-  <p ng-bind-html="product.description | htmlize"></p>
 				 		</p><hr>
 				 		<p class="product-preview">
 				 			<b>Price</b> 				:- {{product.price}}

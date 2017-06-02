@@ -1,0 +1,73 @@
+<div class="main" data-ng-init="init()">
+  <div class="row">
+
+    <div class="col-xs-9">
+      <div class="row">
+        <div class="col-xs-5">
+          <div id="product-show" ng-show="images">
+            <carousel class="item-photo" interval="myInterval">
+              <slide ng-repeat="image in images" active="active" index="$index">
+                <img class="product-img" ng-src="{{image}}">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index+1}}</h4>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+
+        <div class="col-xs-7">
+          <h4>{{product.title}}</h4>
+            <div class="rating">
+              <span>☆</span>
+              <span>☆</span>
+              <span class="active">☆</span>
+              <span class="active">☆</span>
+              <span class="active">☆</span>
+            </div>
+            <span class="review-no ml1" style="margin-left: 1%"> 41 reviews</span>
+          <hr>  
+
+          <h4 class="price">Price: 
+            <span>{{ product.price | currency:'&#8377;' }}</span>
+          </h4>
+          <h4 class="stock">In stock {{product.quantity}}</h4>
+
+          <p ng-bind-html="product.description | htmlize"></p>
+
+          <br>
+
+          <div class="sell">
+            <a ng-click="add_to_cart(product)" class=" btn btn-primary btn-warning"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a>
+
+            <a ui-sref="payment" ng-click="add_to_cart(product)" ng-disabled="{{product.quantity == 0}}" class=" btn btn-success"><span class="glyphicon glyphicon-play"></span> Buy Now</a>
+          </div>
+        </div>
+      </div>   
+
+      <div class="row">
+          <div ng-repeat="suggest_product in products | limitTo:4" class="col-xs-3">
+            <a ui-sref="show_product({id:suggest_product.id})">
+              <div class="col-sm-12 thumbnail text-center">
+                  <img style="height: 280px;width: 100%;" alt="" class="img-responsive" ng-src="{{suggest_product.adds_image}}" >
+
+                  <div class="caption">
+                    <h4>{{suggest_product.title}}</h4>
+                  </div>
+              </div>
+            </a>
+          </div>
+      </div>
+    </div>
+      
+    <div class="col-xs-3">
+       <div ng-repeat="suggest_product in products | limitTo:4"> 
+        <a ui-sref="show_product({id:suggest_product.id})">
+        <img ng-src="{{suggest_product.adds_image}}"  style="height: 200px;
+    width: 98%;" class="img-thumbnail">
+       </a>
+      </div>
+    </div>
+
+  </div>
+</div>
