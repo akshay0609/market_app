@@ -21,9 +21,9 @@ app.factory('ProductService',['$http', '$rootScope',
 			})
 	}
 
-	product.index = function(limit, callback) {
-		limit = limit || ''
-		$http.get(__env.apiUrl + '/api/products/', {limit: limit})
+	product.index = function(product_params, callback) {
+		$http.get(__env.apiUrl + '/api/products/', 
+			{params: product_params})
 			.then(function(data, status, headers, config) {
 				callback(data, {success:true})
 			}).catch(function(data, status, headers, config) {

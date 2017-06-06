@@ -15,15 +15,16 @@
                 </thead>
                 <tbody>
                   <tr ng-repeat-start="order in orders">
-                    <td rowspan="3">{{$index + 1}}</td>
+                    <td rowspan="{{order.products.length + 1}}">{{$index + 1}} </td>
+
                     <tr ng-repeat="product in order.products">
                       <td class="text-center">{{order.placements[$index].created_at | date:"MM/dd/yyyy"}}</td>
                       <td class="col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" ng-src="{{product.adds_image}}" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a ui-sref="show_order({id:order.id})">{{product.title}}</a></h4>
-                                <span>Status: </span><span class="text-warning"><strong>Delivered</strong></span>
+                              <h4 class="media-heading"><a ui-sref="show_orders({id:order.id})">{{product.title}}</a></h4>
+                              <span>Status: </span><span class="text-warning"><strong>Delivered</strong></span>
                             </div>
                         </div>
                       </td>
@@ -38,9 +39,14 @@
                       </td>
                     </tr>
                   </tr>
+
                   <tr ng-repeat-end></tr>
                 </tbody>
             </table>
+            <pagination on-select-page="pageChanged(page)" page="currentPage" max-size="maxSize" total-items="totalItems" class="text-center pagination-md" boundary-links="true"></pagination>
+
+            <!-- <pagination total-items="totalItems" ng-change="pageChanged()" items-per-page="6" ng-model="page" max-size="maxSize" class="text-center pagination-md" boundary-links="true"></pagination> -->
+
         </div>
     </div>
 </div>

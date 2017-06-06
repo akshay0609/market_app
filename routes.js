@@ -4,6 +4,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			templateUrl: '/views/login.html',
 			controller: 'session-controller',
+			// resolve:{
+			//  	button_name: "Register"
+			// },
 			public: true
 		})
 		.state('home', {
@@ -18,6 +21,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller: 'user-controller',
 			public: true
 		})
+		.state('edit_profile', {
+			url: '/edit-profile',
+			templateUrl: '/views/register',
+			controller: 'user-controller',
+			onEnter: function($rootScope, $timeout) {
+        $timeout(function() {
+        	$rootScope.active = true;
+        }, 200);
+        $timeout(function() {
+          $rootScope.$broadcast('edit_profile');
+        }, 1000)
+    	},
+			public: true
+		})
 		.state('create_product', {
 			url: '/product',
 			templateUrl: '/views/product_form',
@@ -25,7 +42,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			public: false
 		})
 		.state('show_product', {
-			url: '/product_show/:id',
+			url: '/product-show/:id',
 			templateUrl: '/views/product_show',
 			controller: 'products-controller',
 			public: true
@@ -72,7 +89,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			}
 
 			$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-
+        $rootScope.active = true;
         if (!toState.public && !$rootScope.globals.currentUser) {
           // $location.path('/login');
           event.preventDefault();
@@ -86,5 +103,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		       event.preventDefault();
 					 $state.go($rootScope.beforeLoginUrl);
 	      }
+			});
+
+			$rootScope.$on('$viewContentLoaded', function(event){ 
+				$rootScope.active = false; 
 			});
 		}])

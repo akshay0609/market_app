@@ -28,3 +28,22 @@
 	font-size: 15px;
 	text-align: center;
 }
+
+.loader {
+  /*position: absolute;
+  z-index: 100;*/
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  z-index: 15;
+  top: 55%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+}
+
+.img-loader {
+  width: 120px;
+  text-align: center;
+  margin-left: 90px;
+  margin-bottom: -10%;
+}

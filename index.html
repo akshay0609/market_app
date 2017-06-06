@@ -22,6 +22,12 @@
 	<body ng-app="marketApp">
 		<ng-include src="'views/nav.html'"></ng-include>
 		<div class="">
+		  
+		  <div ng-show="active" class="loader">
+      	<img class="img-loader" src="http://www.goziply.com/assets/ziply-loading.gif">
+      	<h3  class="text-center text-loader" class="text-center"><i>Loading</i></h3>
+      </div>
+
 			<ui-view></ui-view>
 		</div>
 		<ng-include src="'views/footer.html'"></ng-include>

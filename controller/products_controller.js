@@ -9,9 +9,11 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	$scope.products = []
 	$scope.addsImages = [];
 	$rootScope.cart_product = $rootScope.cart_product || [];;
-	$scope.myInterval = 500;
+	$scope.myInterval = 1500;
   $scope.noWrapSlides = false;
   $scope.active = 0;
+  $scope.currentPage  = 1
+  $scope.maxSize      = 6
 
 	$scope.submitProduct = function() {
 		if (Object.keys($scope.product).length) { 		
@@ -53,22 +55,17 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	product_suggestions = function() {
 		$scope.products = [];
 		$scope.addsImages = [];
-		ProductService.index(10, function(response, status) {
-			if(status.success) {
-				$scope.products = response.data
-			} else {
-				notificationService.error('Internal Problem please try again');
-			}
-		})
+		product_index({limit: 10})
 	}
 
-	product_index = function() {
+	product_index = function(product_params) {
 		$scope.products = [];
-		ProductService.index('',function(response, status) {
+		ProductService.index(product_params, function(response, status) {
 			if(status.success) {
-				$scope.products = response.data
+				$scope.products 		= response.data
+				$scope.totalItems   = response.data[0].total_products
 			} else {
-				notificationService.error('Internal Problem please try again');
+				notificationService.error('No Product Found');
 			}
 		})
 	}
@@ -79,11 +76,9 @@ app.controller('products-controller',['$scope', '$http', '$q',
 		} else {
 			var index = product_exists_in_cart(product.id)
 			if(index > -1) {
-				// yes
 				product.quantity = product.quantity - 1
 				$rootScope.cart_product[index].cart_quantity = $rootScope.cart_product[index].cart_quantity + 1
 			} else {
-				// no
 				product.quantity = product.quantity - 1
 				$rootScope.cart_product.push({
 					product: product,
@@ -104,27 +99,29 @@ app.controller('products-controller',['$scope', '$http', '$q',
 		return found_index
 	}
 
-	$scope.Total = 0;
-
-	$scope.updateAmount = function() {
-		$scope.Total = 0
-		angular.forEach($rootScope.cart_product,function(products) {
-			$scope.Total = $scope.Total + products.product.price * products.cart_quantity
-		});
-	}
-
-	$scope.removeProduct = function(product) {
-		var index = $rootScope.cart_product.indexOf(product);
-  	$rootScope.cart_product.splice(index, 1);   
-  	$scope.updateAmount()
-	}
-
 	$scope.init_products = function() {
-		product_index();
+		var product_params = {page: 1, per_page: __env.per_page}
+		product_index(product_params);
 	}
 
 	$scope.init = function() {
 		product_suggestions()
 		product_show()
 	};
+
+	$scope.pageChanged = function(page) {
+		var product_params = {page: page, per_page: __env.per_page}
+    product_index(product_params)
+  };
+
+  $scope.filter_by_price = function(price_min_and_max) {
+  	angular.merge(price_min_and_max, {page: 1, per_page: __env.per_page});
+  	product_index(price_min_and_max)
+  }
+
+  $scope.filter_by_order = function(order_by) {
+  	debugger
+  	angular.merge(order_by, {page: 1, per_page: __env.per_page});
+  	product_index(order_by)
+  }
 }]);

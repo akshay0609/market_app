@@ -27,10 +27,10 @@ app.factory('OrderService',['$rootScope', '$http', function($rootScope, $http) {
 					})			
 	};
 
-	order.index = function(callback) {
+	order.index = function(page, callback) {
 
-		$http.get(__env.apiUrl + '/api/users/' + 
-							$rootScope.globals.currentUser.user_id +'/orders')
+		$http.get(__env.apiUrl + '/api/users/' + $rootScope.globals.currentUser.user_id +'/orders',
+					{params:  {page: page, per_page: __env.per_page}})
 					.then(function(data, status, headers, config) {
 						callback(data, {success:true})
 					})
