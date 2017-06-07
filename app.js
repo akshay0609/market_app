@@ -1,9 +1,9 @@
 var app = angular.module('marketApp', ['ui.router','ngCookies',
-																				'ui.router.state.events',
-																				'naif.base64','ui.bootstrap',
-																				'jlareau.pnotify', 'ui.toggle',
-																				'ngSanitize'
-																				])
+                    					'ui.router.state.events',
+                    					'naif.base64','ui.bootstrap',
+                    					'jlareau.pnotify', 'ui.toggle',
+                    					'ngSanitize'
+                    					])
 
     .value('HTMLIZE_CONVERSIONS', [
         { expr: /\n+?/g, value: '<br>' }
