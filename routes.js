@@ -1,4 +1,4 @@
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 	$stateProvider
 		.state('login',{
 			url: '/login',
@@ -53,6 +53,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller: 'products-controller',
 			public: true
 		})
+		.state('search_product', {
+			url: '/products-result?product_search',
+			templateUrl: '/views/products_index',
+			controller: 'products-controller',
+			public: true
+		})
 		.state('product_order', {
 			url: '/carts',
 			templateUrl: '/views/cart.html',
@@ -77,6 +83,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			controller: 'orders-controller',
 			public: false
 		});
+
+		// if(window.history && window.history.pushState){
+  //    $locationProvider.html5Mode({
+  //            enabled: true,
+  //            requireBase: false
+  //     });
+  //   }
 
 		$urlRouterProvider.otherwise("home")
 })

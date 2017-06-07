@@ -16,7 +16,7 @@
         <div class="col-md-4">
           Total        :- {{order.total | currency:'&#8377;'}}<br>
           Created Date :- {{order.placements[0].created_at | date:"MM/dd/yyyy"}}<br><br>
-          <a class="btn btn-success" role="button">Give Your Review</a>
+          <!-- <a class="btn btn-success" role="button">Give Your Review</a> -->
         </div>
       </div>
 
@@ -31,7 +31,7 @@
                           <th>Quantity</th>
                           <th class="text-center">Price</th>
                           <th class="text-center">Total</th>
-                          <th>Review </th>
+                          <th class="text-center">Review </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,8 +51,8 @@
                           <td class="col-md-1 text-center"><strong>{{product.price * order.placements[$index].quantity}}</strong></td>
                             
                           <td class="col-md-1">
-                            <button ng-click="removeProduct(order)" type="button" class="btn btn-success">
-                              <span ></span> Review
+                            <button ui-sref="show_product({id:product.id})" type="button" class="btn btn-success">
+                              <span ></span> Give Your Review
                             </button>
                           </td>
                         </tr>

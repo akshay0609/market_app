@@ -1,9 +1,11 @@
 app.controller('products-controller',['$scope', '$http', '$q', 
 																			'$rootScope', 'notificationService', 
 																			'ProductService', '$stateParams',
+																			 '$location', 
 																			function($scope, $http, $q, 
 																			$rootScope,notificationService, 
-																			ProductService, $stateParams) {
+																			ProductService, $stateParams, 
+																			$location ) {
 
 	$scope.product = {}
 	$scope.products = []
@@ -65,7 +67,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 				$scope.products 		= response.data
 				$scope.totalItems   = response.data[0].total_products
 			} else {
-				notificationService.error('No Product Found');
+				notificationService.notice('No Product Found');
 			}
 		})
 	}
@@ -101,27 +103,57 @@ app.controller('products-controller',['$scope', '$http', '$q',
 
 	$scope.init_products = function() {
 		var product_params = {page: 1, per_page: __env.per_page}
+		if($stateParams.product_search) {
+			angular.merge(product_params,{title: $stateParams.product_search});
+		}
 		product_index(product_params);
 	}
 
 	$scope.init = function() {
 		product_suggestions()
 		product_show()
+		disqus_comments()
 	};
 
 	$scope.pageChanged = function(page) {
 		var product_params = {page: page, per_page: __env.per_page}
+		if($stateParams.product_search) {
+			angular.merge(product_params,{title: $stateParams.product_search});
+		}
     product_index(product_params)
   };
 
   $scope.filter_by_price = function(price_min_and_max) {
   	angular.merge(price_min_and_max, {page: 1, per_page: __env.per_page});
+  	if($stateParams.product_search) {
+			angular.merge(price_min_and_max,{title: $stateParams.product_search});
+		}
   	product_index(price_min_and_max)
   }
 
   $scope.filter_by_order = function(order_by) {
-  	debugger
   	angular.merge(order_by, {page: 1, per_page: __env.per_page});
+  	if($stateParams.product_search) {
+			angular.merge(order_by,{title: $stateParams.product_search});
+		}
   	product_index(order_by)
   }
+
+  var disqus_comments_config = function() {
+		window.disqus_config = function () {
+			this.page.url = $location.absurl;
+			this.page.identifier = $stateParams.id;
+		};	
+	}
+
+	var disqus_comments = function() {
+
+		disqus_comments_config()
+
+		var d = document, s = d.createElement('script');
+	  s.src = __env.disqusUrl;
+	  s.setAttribute('data-timestamp', +new Date());
+	  (d.head || d.body).appendChild(s);
+	}
+
 }]);

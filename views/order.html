@@ -33,7 +33,7 @@
                       <td class="col-md-1 text-center"><strong>{{product.price * order.placements[$index].quantity}}</strong></td>
                         
                       <td class="col-md-1">
-                        <button ng-click="removeProduct(order)" type="button" class="btn btn-success">
+                        <button ui-sref="show_product({id:product.id})" type="button" class="btn btn-success">
                           <span ></span> Review
                         </button>
                       </td>

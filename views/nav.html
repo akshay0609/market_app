@@ -15,7 +15,7 @@
 	      <div class="input-group" style="width: 88%">
           <input type="text" class="form-control " placeholder="Search" ng-model="search_text" name="q">
           <div class="input-group-btn">
-            <button class="btn btn-default" ng-click="search_product(search_text)" type="button"><i class="glyphicon glyphicon-search"></i></button>
+            <button class="btn btn-default" ng-click="search_product(search_text)" ui-sref="search_product({product_search: search_text})" type="button"><i class="glyphicon glyphicon-search"></i></button>
           </div>
 	      </div>
 	      </form>
