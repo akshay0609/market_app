@@ -11,19 +11,19 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 		.state('home', {
 			url: '/home',
-			templateUrl: '/views/home',
+			templateUrl: '/views/home.html',
 			controller: 'home-controller',
 			public: true
 		})
 		.state('register', {
 			url: '/register',
-			templateUrl: '/views/register',
+			templateUrl: '/views/register.html',
 			controller: 'user-controller',
 			public: true
 		})
 		.state('edit_profile', {
 			url: '/edit-profile',
-			templateUrl: '/views/register',
+			templateUrl: '/views/register.html',
 			controller: 'user-controller',
 			onEnter: function($rootScope, $timeout) {
         $timeout(function() {
@@ -37,25 +37,25 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 		.state('create_product', {
 			url: '/product',
-			templateUrl: '/views/product_form',
+			templateUrl: '/views/product_form.html',
 			controller: 'products-controller',
 			public: false
 		})
 		.state('show_product', {
 			url: '/product-show/:id',
-			templateUrl: '/views/product_show',
+			templateUrl: '/views/product_show.html',
 			controller: 'products-controller',
 			public: true
 		})
 		.state('index_product', {
 			url: '/products',
-			templateUrl: '/views/products_index',
+			templateUrl: '/views/products_index.html',
 			controller: 'products-controller',
 			public: true
 		})
 		.state('search_product', {
 			url: '/products-result?product_search',
-			templateUrl: '/views/products_index',
+			templateUrl: '/views/products_index.html',
 			controller: 'products-controller',
 			public: true
 		})
