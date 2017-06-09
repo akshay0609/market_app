@@ -1,69 +1,76 @@
  <div class="" data-ng-init="init_products()">
   <div class="row">
-  <div class="col-md-2">
-    <div class="products-filter">
-      <hr>
-       <div class="row">
-        <h5 class="col-sm-4"><b>Sort_By</b></h5>
 
-        <select ng-model="order" ng-change="filter_by_order({order_by: order})" style="margin-top: 8px" class="col-sm-7">
-          <option value="updated_at">Latest in market</option>
-          <option value="price">Price Low to High</option>
-          <option value="created_at">Most Rated Product</option>
-        </select>
-      </div>
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+      <div class="products-filter">
+        <hr>
+         <div class="row">
+          <h5 class="col-sm-4"><b>Sort_By</b></h5>
 
-      <hr>
-      <h5><b>Price By</b></h5>
-      <ol style="cursor:pointer">
-        <li><a ng-click="filter_by_price({max_price:1000})">Under ₹1,000</a></li>
-        <li><a ng-click="filter_by_price({min_price:1000, max_price:5000})">₹1,000 - ₹5,000</a></li>
-        <li><a ng-click="filter_by_price({min_price:5000, max_price:10000})">₹5,000 - ₹10,000</a></li>
-        <li><a ng-click="filter_by_price({min_price:10000, max_price:20000})">₹10,000 - ₹20,000</a></li>
-      </ol>  
+          <select ng-model="order" ng-change="filter_by_order({order_by: order})" style="margin-top: 8px" class="col-sm-7">
+            <option value="updated_at">Latest in market</option>
+            <option value="price">Price Low to High</option>
+            <option value="created_at">Most Rated Product</option>
+          </select>
+        </div>
 
-      <div class="price-input">
-        <form class="">
-          <div class="row">
-            <h5 class="col-sm-2">Min</h5>
-            <div class="col-sm-3">
-              <input type="text" ng-model='price.min' style="width:40px;">
-            </div>  
-            <h5 class="col-sm-2">Max</h5>
-            <div class="col-sm-3">
-              <input type="text" ng-model='price.max' style="width:40px;">
-            </div>  
-            <div class="col-sm-2">
-              <input type="button" value="GO" ng-click="filter_by_price({min_price: price.min, max_price:price.max})" style="margin-left: -2px">
-            </div>
-          </div>
-        </form>
-      </div>
+        <hr>
+        <h5><b>Price By</b></h5>
+        <ol style="cursor:pointer">
+          <li><a ng-click="filter_by_price({max_price:1000})">Under ₹1,000</a></li>
+          <li><a ng-click="filter_by_price({min_price:1000, max_price:5000})">₹1,000 - ₹5,000</a></li>
+          <li><a ng-click="filter_by_price({min_price:5000, max_price:10000})">₹5,000 - ₹10,000</a></li>
+          <li><a ng-click="filter_by_price({min_price:10000, max_price:20000})">₹10,000 - ₹20,000</a></li>
+        </ol>  
 
-      <!-- <hr>
-      <div>
-        <h5><b>Availability in Stock</b></h5>
-        <input type="checkbox" name="Stock" value="Stock" style="margin-left: 30px"> Availability in Stock<br>
-      </div>   -->
-      <hr>
-
-    </div>
-  </div>
-    <div class="col-md-10">
-      <div class="row">
-        <div ng-repeat="product in products" class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-          <a id="show_product" ui-sref="show_product({id:product.id})">
-            <div class="thumbnail text-center">
-              <img style="height: 250px;" class="img-responsive" ng-src="{{product.adds_image}}" >
-              <div class="">
-                <h4>{{product.title}}</h4>
-                <h5 style="color: green">{{product.price}}</h5>
+        <div class="price-input">
+          <form class="">
+            <div class="row">
+              <h5 class="col-sm-2">Min</h5>
+              <div class="col-sm-3">
+                <input type="text" ng-model='price.min' style="width:40px;">
+              </div>  
+              <h5 class="col-sm-2">Max</h5>
+              <div class="col-sm-3">
+                <input type="text" ng-model='price.max' style="width:40px;">
+              </div>  
+              <div class="col-sm-2">
+                <input type="button" value="GO" ng-click="filter_by_price({min_price: price.min, max_price:price.max})" style="margin-left: -2px">
               </div>
-            </div> 
-          </a>
+            </div>
+          </form>
+        </div>
+
+        <!-- <hr>
+        <div>
+          <h5><b>Availability in Stock</b></h5>
+          <input type="checkbox" name="Stock" value="Stock" style="margin-left: 30px"> Availability in Stock<br>
+        </div>   -->
+        <hr>
+
+      </div>
+    </div>
+
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+      <div class="row">
+        <div ng-repeat="product in products">
+          <div class="clearfix" ng-if="$index % 4 == 0"></div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <a id="show_product" ui-sref="show_product({id:product.id})">
+              <div class="thumbnail text-center">
+                <img style="height: 250px;" class="img-responsive" ng-src="{{product.adds_image}}" >
+                <div class="">
+                  <h4>{{product.title}}</h4>
+                  <h5 style="color: green">{{product.price}}</h5>
+                </div>
+              </div> 
+            </a>
+          </div>
         </div>
       </div>
+
       <p style="display: block;text-align: center;"><pagination on-select-page="pageChanged(page)" page="currentPage" max-size="maxSize" total-items="totalItems" class="text-center pagination-md" boundary-links="true"></pagination></p>
     </div>
- </div>
+
+  </div>
 </div>            

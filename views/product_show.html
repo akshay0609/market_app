@@ -1,9 +1,9 @@
 <div class="main" data-ng-init="init()">
   <div class="row">
 
-    <div class="col-xs-9">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
       <div class="row">
-        <div class="col-xs-5">
+        <div class="col-md-5">
           <div id="product-show" ng-show="images">
             <carousel class="item-photo" interval="myInterval">
               <slide ng-repeat="image in images" active="active" index="$index">
@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <div class="col-xs-7">
+        <div class="col-md-7">
           <h4>{{product.title}}</h4>
             <div class="rating">
               <span>☆</span>
@@ -46,7 +46,7 @@
       </div>   
 
 <!--       <div class="row">
-          <div ng-repeat="suggest_product in products | limitTo:4" class="col-xs-3">
+          <div ng-repeat="suggest_product in products | limitTo:4" class="col-md-3">
             <a ui-sref="show_product({id:suggest_product.id})">
               <div class="col-sm-12 thumbnail text-center">
                   <img style="height: 280px;width: 100%;" alt="" class="img-responsive" ng-src="{{suggest_product.adds_image}}" >
@@ -64,7 +64,7 @@
 
     </div>
       
-    <div class="col-xs-3">
+    <div class="col-md-3 col-lg-3 hidden-sm-down">
        <div ng-repeat="suggest_product in products | limitTo:4"> 
         <a ui-sref="show_product({id:suggest_product.id})">
         <img ng-src="{{suggest_product.adds_image}}"  style="height: 200px;
