@@ -1,11 +1,11 @@
 app.controller('products-controller',['$scope', '$http', '$q', 
 																			'$rootScope', 'notificationService', 
 																			'ProductService', '$stateParams',
-																			 '$location', 
+																			 '$location',  '$state',
 																			function($scope, $http, $q, 
 																			$rootScope,notificationService, 
 																			ProductService, $stateParams, 
-																			$location ) {
+																			$location, $state ) {
 
 	$scope.product = {}
 	$scope.products = []
@@ -19,11 +19,12 @@ app.controller('products-controller',['$scope', '$http', '$q',
 
 	$scope.submitProduct = function() {
 		if (Object.keys($scope.product).length) { 		
-			ProductService.create($scope.product, $scope.images, function(data, status) {
+			ProductService.create($scope.product, $scope.images, function(response, status) {
 				if(status.success) {
 					$scope.product = {}
 					$scope.images = []
 					notificationService.success('Product Stored Successfully');
+					$state.go('show_product', {'id': response.data.id})
 				} else {
 					notificationService.error('Internal Problem please try again');
 				}
@@ -38,7 +39,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 
 	full_image_url = function(data, images) {
 		angular.forEach(data.pictures, function(value) {
-		  images.push(__env.apiUrl + value.name.url);
+		  images.push(value.name.url);
 		});
 	}
 
@@ -65,7 +66,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 		ProductService.index(product_params, function(response, status) {
 			if(status.success) {
 				$scope.products 		= response.data
-				$scope.totalItems   = response.data[0].total_products
+				$scope.totalItems   = response.data[0].total_product
 			} else {
 				notificationService.notice('No Product Found');
 			}
@@ -102,7 +103,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	}
 
 	$scope.init_products = function() {
-		var product_params = {page: 1, per_page: __env.per_page}
+		var product_params = {page: 1, per_page: __env.per_page_product}
 		if($stateParams.product_search) {
 			angular.merge(product_params,{title: $stateParams.product_search});
 		}
@@ -116,7 +117,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	};
 
 	$scope.pageChanged = function(page) {
-		var product_params = {page: page, per_page: __env.per_page}
+		var product_params = {page: page, per_page: __env.per_page_product}
 		if($stateParams.product_search) {
 			angular.merge(product_params,{title: $stateParams.product_search});
 		}
@@ -124,7 +125,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
   };
 
   $scope.filter_by_price = function(price_min_and_max) {
-  	angular.merge(price_min_and_max, {page: 1, per_page: __env.per_page});
+  	angular.merge(price_min_and_max, {page: 1, per_page: __env.per_page_product});
   	if($stateParams.product_search) {
 			angular.merge(price_min_and_max,{title: $stateParams.product_search});
 		}
@@ -132,7 +133,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
   }
 
   $scope.filter_by_order = function(order_by) {
-  	angular.merge(order_by, {page: 1, per_page: __env.per_page});
+  	angular.merge(order_by, {page: 1, per_page: __env.per_page_product});
   	if($stateParams.product_search) {
 			angular.merge(order_by,{title: $stateParams.product_search});
 		}
@@ -147,7 +148,6 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	}
 
 	var disqus_comments = function() {
-
 		disqus_comments_config()
 
 		var d = document, s = d.createElement('script');
