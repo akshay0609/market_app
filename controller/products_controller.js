@@ -11,7 +11,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	$scope.products = []
 	$scope.addsImages = [];
 	$rootScope.cart_product = $rootScope.cart_product || [];;
-	$scope.myInterval = 1500;
+	$scope.myInterval = 2000;
   $scope.noWrapSlides = false;
   $scope.active = 0;
   $scope.currentPage  = 1
