@@ -15,7 +15,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
   $scope.noWrapSlides = false;
   $scope.active = 0;
   $scope.currentPage  = 1
-  $scope.maxSize      = 6
+  $scope.maxSize      = 8
 
 	$scope.submitProduct = function() {
 		if (Object.keys($scope.product).length) { 		
