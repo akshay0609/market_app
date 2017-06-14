@@ -47,7 +47,11 @@ app.controller('products-controller',['$scope', '$http', '$q',
 		$scope.images = []
 		ProductService.show($stateParams.id, function(response, status) {
 			if(status.success) {
-				full_image_url(response.data, $scope.images)	
+				full_image_url(response.data, $scope.images)
+				var index = product_exists_in_cart(response.data.id)
+				if(index > -1) {
+					response.data.quantity = response.data.quantity - $rootScope.cart_product[index].cart_quantity
+				}
 				$scope.product = response.data
 			} else {
 				notificationService.error('Internal Problem please try again');
