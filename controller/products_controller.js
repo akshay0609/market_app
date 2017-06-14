@@ -14,8 +14,8 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	$scope.myInterval = 2000;
   $scope.noWrapSlides = false;
   $scope.active = 0;
-  $scope.currentPage  = 1
-  $scope.maxSize      = 8
+  $scope.currentPageProduct  = 1
+  $scope.maxSizeProduct      = 8
 
 	$scope.submitProduct = function() {
 		if (Object.keys($scope.product).length) { 		
@@ -66,7 +66,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 		ProductService.index(product_params, function(response, status) {
 			if(status.success) {
 				$scope.products 		= response.data
-				$scope.totalItems   = response.data[0].total_product
+				$scope.totalItemsProduct   = response.data[0].total_product
 			} else {
 				notificationService.notice('No Product Found');
 			}
@@ -103,6 +103,8 @@ app.controller('products-controller',['$scope', '$http', '$q',
 	}
 
 	$scope.init_products = function() {
+		$scope.currentPageProduct  = 1
+  	$scope.maxSizeProduct      = 8
 		var product_params = {page: 1, per_page: __env.per_page_product}
 		if($stateParams.product_search) {
 			angular.merge(product_params,{title: $stateParams.product_search});
@@ -116,7 +118,7 @@ app.controller('products-controller',['$scope', '$http', '$q',
 		disqus_comments()
 	};
 
-	$scope.pageChanged = function(page) {
+	$scope.pageChangedProduct = function(page) {
 		var product_params = {page: page, per_page: __env.per_page_product}
 		if($stateParams.product_search) {
 			angular.merge(product_params,{title: $stateParams.product_search});
@@ -125,6 +127,8 @@ app.controller('products-controller',['$scope', '$http', '$q',
   };
 
   $scope.filter_by_price = function(price_min_and_max) {
+  	$scope.currentPageProduct  = 1
+  	$scope.maxSizeProduct      = 8
   	angular.merge(price_min_and_max, {page: 1, per_page: __env.per_page_product});
   	if($stateParams.product_search) {
 			angular.merge(price_min_and_max,{title: $stateParams.product_search});
@@ -133,6 +137,8 @@ app.controller('products-controller',['$scope', '$http', '$q',
   }
 
   $scope.filter_by_order = function(order_by) {
+  	$scope.currentPageProduct  = 1
+  	$scope.maxSizeProduct      = 8
   	angular.merge(order_by, {page: 1, per_page: __env.per_page_product});
   	if($stateParams.product_search) {
 			angular.merge(order_by,{title: $stateParams.product_search});

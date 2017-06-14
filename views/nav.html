@@ -30,7 +30,7 @@
 
         <li ng-show="globals.currentUser" class="dropdown">
           <a href="#" class="bg dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> 
-          Hi {{globals.currentUser.user_name}}
+          Hi <span style="text-transform: capitalize;">{{globals.currentUser.user_name}}</span>
           <b class="caret"></b></a>
           <ul class="bg dropdown-menu">
             <li><a ui-sref="index_order()">Your orders</a></li>

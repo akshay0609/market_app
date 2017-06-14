@@ -18,7 +18,7 @@
                     <td rowspan="{{order.products.length + 1}}">{{$index + 1}} </td>
 
                     <tr ng-repeat="product in order.products">
-                      <td class="text-center">{{order.placements[$index].created_at | date:"MM/dd/yyyy"}}</td>
+                      <td class="text-center">{{order.placements[$index].created_at | date:"longDate"}}</td>
                       <td class="col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" ng-src="{{product.adds_image}}" style="width: 72px; height: 72px;"> </a>
@@ -29,8 +29,8 @@
                         </div>
                       </td>
                       <td class="col-md-1 text-center"><strong>{{order.placements[$index].quantity}}</strong></td>
-                      <td class="col-md-1 text-center"><strong>{{product.price}}</strong></td>
-                      <td class="col-md-1 text-center"><strong>{{product.price * order.placements[$index].quantity}}</strong></td>
+                      <td class="col-md-1 text-center"><strong>{{product.price | currency:'&#8377;'}}</strong></td>
+                      <td class="col-md-1 text-center"><strong>{{product.price * order.placements[$index].quantity | currency:'&#8377;2'}}</strong></td>
                         
                       <td class="col-md-1">
                         <button ui-sref="show_product({id:product.id})" type="button" class="btn btn-success">

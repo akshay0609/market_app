@@ -10,6 +10,7 @@
           <select ng-model="order" ng-change="filter_by_order({order_by: order})" style="margin-top: 8px" class="col-sm-7">
             <option value="updated_at">Latest in market</option>
             <option value="price">Price Low to High</option>
+            <option value="price DESC">Price High to Low</option>
             <option value="created_at">Most Rated Product</option>
           </select>
         </div>
@@ -70,7 +71,7 @@
       </div>
 
       <p style="display: block;text-align: center;">
-        <pagination on-select-page="pageChanged(page)" page="currentPage" max-size="maxSize" total-items="totalItems" class="text-center pagination-md" boundary-links="true"></pagination>
+        <pagination on-select-page="pageChangedProduct(page)" page="currentPageProduct" max-size="maxSizeProduct" total-items="totalItemsProduct" class="text-center pagination-md" boundary-links="true"></pagination>
       </p>
     </div>
 
