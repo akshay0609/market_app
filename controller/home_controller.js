@@ -4,16 +4,20 @@ app.controller('home-controller',['$scope', '$rootScope',
 	
 $scope.images = [
     {
-      image: 'http://i01.appmifile.com/webfile/globalimg/en/goods/redmi4a/index-bg-new.jpg'
+      name: "Mobiles",
+      image: 'https://res.cloudinary.com/dzrgwhm1s/image/upload/v1609568563/public/market-app/index-bg-new.jpg'
     },
     {
-      image: 'http://www.tclindia.co.in/wp-content/uploads/2017/02/Artboard-1.png'
+      name: "Games",
+      image: 'https://res.cloudinary.com/dzrgwhm1s/image/upload/v1609569026/public/market-app/wp3025432.jpg'
     },
     {
-      image: 'http://www.inus.us/includes/templates/inus/images/puma_banner.jpg'
+      name: "Camera",
+      image: 'https://res.cloudinary.com/dzrgwhm1s/image/upload/v1609572029/public/market-app/48-485878_camera-wallpapers-hd.jpg'
     },
     {
-      image: 'https://files.pccasegear.com/UserFiles/WDBBKD0030BBK-PESN-banner.jpg'
+      name: "Hard Drives",
+      image: 'https://res.cloudinary.com/dzrgwhm1s/image/upload/v1609568909/public/market-app/WDBBKD0030BBK-PESN-banner.jpg'
     }
   ];
 
